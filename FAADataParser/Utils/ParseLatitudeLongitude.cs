@@ -4,6 +4,12 @@ namespace FAADataParser.Utils
 {
     static class ParseLatitudeLongitude
     {
+        public static bool ParseLatLong(string input, out object output)
+        {
+            bool result = TryParse(input, out decimal value);
+            output = result ? (object)value : null;
+            return result;
+        }
         public static bool TryParse(string latLongString, out decimal latLong)
         {
             latLong = 0.0m;
