@@ -34,11 +34,18 @@ namespace FAADataParser.NASR
             {
                 PropertyInfo property = t.GetProperty(field.propertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
                 string fieldSubstring = input.Substring(field.fieldBegin, field.fieldLength).Trim();
-                if (fieldSubstring.Length == 0)
+                if (!field.parserFunc(fieldSubstring, out object parsedValue))
                 {
-                    if (field.nullable)
+                    if (fieldSubstring.Length == 0)
                     {
-                        property.SetValue(output, null);
+                        if (field.nullable)
+                        {
+                            property.SetValue(output, null);
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                     else
                     {
@@ -47,10 +54,6 @@ namespace FAADataParser.NASR
                 }
                 else
                 {
-                    if (!field.parserFunc(fieldSubstring, out object parsedValue))
-                    {
-                        return false;
-                    }
                     property.SetValue(output, parsedValue);
                 }
             }

@@ -8,7 +8,7 @@ namespace FAADataParser.Utils
     {
         public static bool ParseString(string input, out object output)
         {
-            output = input; return true;
+            output = input == "" ? null : input; return true;
         }
         public static bool ParseDate(string input, out object output)
         {
@@ -27,6 +27,17 @@ namespace FAADataParser.Utils
             bool result = decimal.TryParse(input, out decimal value);
             output = result ? (object)value : null;
             return result;
+        }
+        public static bool ParseBool(string input, out object output)
+        {
+            output = null;
+            switch (input)
+            {
+                case "Y": output = true; break;
+                case "N": output = false; break;
+                default: return false;
+            }
+            return true;
         }
     }
 }
