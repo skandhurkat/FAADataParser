@@ -4,7 +4,7 @@ using FAADataParser.Utils;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AviationApp.UnitTests.FAADataParser.Utils
+namespace UnitTests.FAADataParser.Utils
 {
     [TestClass]
     public class TestParseLatitudeLongitude
