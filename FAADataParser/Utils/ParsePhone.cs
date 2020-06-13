@@ -6,7 +6,7 @@ namespace FAADataParser.Utils
 {
     class ParsePhone
     {
-        public static bool TryParse(string input, out string phone)
+        public static bool TryParse(string input, out object phone)
         {
             Match match = _800Number.Match(input);
             if (match.Success)
