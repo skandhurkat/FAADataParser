@@ -37,5 +37,11 @@ namespace FAADataParser.Utils
             }
             return true;
         }
+        public static bool ParseDouble(string input, out object output)
+        {
+            bool result = double.TryParse(input, out double value);
+            output = result ? (object)value : null;
+            return result;
+        }
     }
 }
