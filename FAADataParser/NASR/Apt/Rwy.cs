@@ -64,7 +64,6 @@ namespace FAADataParser.NASR.Apt
             (443, 7, BuiltinTypeParsers.ParseDouble, nameof(ReciprocalEndTouchdownZoneElevation), false),
         };
 
-
         public bool Validate() => true;
     }
 }
