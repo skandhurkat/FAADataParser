@@ -1,4 +1,5 @@
 ﻿using FAADataParser.Utils;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTests.FAADataParser.Utils
