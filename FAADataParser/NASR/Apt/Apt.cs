@@ -57,20 +57,20 @@ namespace FAADataParser.NASR.Apt
         public decimal Longitude { get; private set; }
         public SurveyMethod ReferencePointDeterminationMethod { get; private set; }
         public decimal Elevation { get; private set; }
-        public SurveyMethod ElevationDeterminationMethod { get; private set; }
-        public int MagneticVariation { get; private set; }
-        public int MagneticVariationEpochYear { get; private set; }
+        public SurveyMethod? ElevationDeterminationMethod { get; private set; }
+        public int? MagneticVariation { get; private set; }
+        public int? MagneticVariationEpochYear { get; private set; }
         public int? TPA { get; private set; }
         public string SectionalName { get; private set; }
-        public int DistanceFromCBDInNm { get; private set; }
-        public CompassPoint DirectionFromCBD { get; private set; }
+        public int? DistanceFromCBDInNm { get; private set; }
+        public CompassPoint? DirectionFromCBD { get; private set; }
         public string BoundaryArtccIdentifier { get; private set; }
         public string BoundaryArtccFaaComputerIdentifier { get; private set; }
         public string BoundaryArtccName { get; private set; }
         public string ResponsibleArtccIdentifier { get; private set; }
         public string ResponsibleArtccFaaComputerIdentifier { get; private set; }
         public string ResponsibleArtccName { get; private set; }
-        public bool TieInFssOnFacility { get; private set; }
+        public bool? TieInFssOnFacility { get; private set; }
         public string TieInFssIdentifier { get; private set; }
         public string TieInFssName { get; private set; }
         [Phone]
@@ -82,7 +82,7 @@ namespace FAADataParser.NASR.Apt
         [Phone]
         public string TollFreeAlternateFssNumber { get; private set; }
         public string NotamAndWeatherFacilityIdentifier { get; private set; }
-        public bool NotamDAvailableAtAirport { get; private set; }
+        public bool? NotamDAvailableAtAirport { get; private set; }
         public static bool TryParse(string recordString, out Apt apt)
         {
             return NASRDataParserGeneric<Apt>.TryParse(recordString, 1529, "APT", fieldList, out apt);
@@ -90,7 +90,7 @@ namespace FAADataParser.NASR.Apt
 
         private static readonly List<(int fieldStart, int fieldLength, ParserDelegate parserDelegate, string propertyName, bool nullable)> fieldList = new List<(int fieldStart, int fieldLength, ParserDelegate parserDelegate, string propertyName, bool nullable)>
         {
-            (3, 10, BuiltinTypeParsers.ParseString, nameof(SiteNumber), false),
+            (3, 11, BuiltinTypeParsers.ParseString, nameof(SiteNumber), false),
             (14, 13, LandingFacilityParser, nameof(LandingFacilityType), false),
             (27, 4, BuiltinTypeParsers.ParseString, nameof(LocationIdentifier), false),
             (31, 10,  BuiltinTypeParsers.ParseDate, nameof(InformationEffectiveDate), false),
@@ -103,43 +103,74 @@ namespace FAADataParser.NASR.Apt
             (133, 50, BuiltinTypeParsers.ParseString, nameof(FacilityName), false),
             (183, 2, AirportOwnershipTypeParser, nameof(AirportOwnershipType), false),
             (185, 2, FacilityUseParser, nameof(FacilityUse), false),
-            (187, 35, BuiltinTypeParsers.ParseString, nameof(OwnersName), false),
-            (222, 72, BuiltinTypeParsers.ParseString, nameof(OwnersAddress1), false),
-            (294, 45, BuiltinTypeParsers.ParseString, nameof(OwnersAddress2), false),
-            (339, 16, ParsePhone.TryParse, nameof(OwnersPhone), false),
-            (355, 35, BuiltinTypeParsers.ParseString, nameof(ManagersName), false),
-            (390, 72, BuiltinTypeParsers.ParseString, nameof(ManagersAddress1), false),
-            (462, 45, BuiltinTypeParsers.ParseString, nameof(ManagersAddress2), false),
-            (507, 16, ParsePhone.TryParse, nameof(ManagersPhone), false),
+            (187, 35, BuiltinTypeParsers.ParseString, nameof(OwnersName), true),
+            (222, 72, BuiltinTypeParsers.ParseString, nameof(OwnersAddress1), true),
+            (294, 45, BuiltinTypeParsers.ParseString, nameof(OwnersAddress2), true),
+            (339, 16, ParsePhone.TryParse, nameof(OwnersPhone), true),
+            (355, 35, BuiltinTypeParsers.ParseString, nameof(ManagersName), true),
+            (390, 72, BuiltinTypeParsers.ParseString, nameof(ManagersAddress1), true),
+            (462, 45, BuiltinTypeParsers.ParseString, nameof(ManagersAddress2), true),
+            (507, 16, ParsePhone.TryParse, nameof(ManagersPhone), true),
             (523, 15, ParseLatitudeLongitude.ParseLatLong, nameof(Latitude), false),
             (550, 15, ParseLatitudeLongitude.ParseLatLong, nameof(Longitude), false),
             (577, 1, SurveyMethodParser, nameof(ReferencePointDeterminationMethod), false),
             (578, 7, BuiltinTypeParsers.ParseDecimal, nameof(Elevation), false),
-            (585, 1, SurveyMethodParser, nameof(ElevationDeterminationMethod), false),
-            (586, 3, MagVarParser, nameof(MagneticVariation), false),
-            (589, 4, BuiltinTypeParsers.ParseInt, nameof(MagneticVariationEpochYear), false),
+            (585, 1, SurveyMethodParser, nameof(ElevationDeterminationMethod), true),
+            (586, 3, MagVarParser, nameof(MagneticVariation), true),
+            (589, 4, BuiltinTypeParsers.ParseInt, nameof(MagneticVariationEpochYear), true),
             (593, 4, BuiltinTypeParsers.ParseInt, nameof(TPA), true),
             (597, 30, BuiltinTypeParsers.ParseString, nameof(SectionalName), false),
-            (627, 2, BuiltinTypeParsers.ParseInt, nameof(DistanceFromCBDInNm), false),
-            (629, 3, ParseCompassPoint.TryParse, nameof(DirectionFromCBD), false),
+            (627, 2, BuiltinTypeParsers.ParseInt, nameof(DistanceFromCBDInNm), true),
+            (629, 3, ParseCompassPoint.TryParse, nameof(DirectionFromCBD), true),
             (637, 4, BuiltinTypeParsers.ParseString, nameof(BoundaryArtccIdentifier), false),
             (641, 3, BuiltinTypeParsers.ParseString, nameof(BoundaryArtccFaaComputerIdentifier), false),
             (644, 30, BuiltinTypeParsers.ParseString, nameof(BoundaryArtccName), false),
             (674, 4, BuiltinTypeParsers.ParseString, nameof(ResponsibleArtccIdentifier), false),
             (678, 3, BuiltinTypeParsers.ParseString, nameof(ResponsibleArtccFaaComputerIdentifier), false),
             (681, 30, BuiltinTypeParsers.ParseString, nameof(ResponsibleArtccName), false),
-            (711, 1, BuiltinTypeParsers.ParseBool, nameof(TieInFssOnFacility), false),
-            (712, 4, BuiltinTypeParsers.ParseString, nameof(TieInFssIdentifier), false),
-            (716, 30, BuiltinTypeParsers.ParseString, nameof(TieInFssName), false),
+            (711, 1, BuiltinTypeParsers.ParseBool, nameof(TieInFssOnFacility), true),
+            (712, 4, BuiltinTypeParsers.ParseString, nameof(TieInFssIdentifier), true),
+            (716, 30, BuiltinTypeParsers.ParseString, nameof(TieInFssName), true),
             (746, 16, ParsePhone.TryParse, nameof(LocalFssPhoneNumber), true),
             (762, 16, ParsePhone.TryParse, nameof(TollFreeFssPhoneNumber), true),
             (778, 4, BuiltinTypeParsers.ParseString, nameof(AlternateFssIdentifier), true),
             (782, 30, BuiltinTypeParsers.ParseString, nameof(AlternateFssName), true),
             (812, 16, ParsePhone.TryParse, nameof(TollFreeAlternateFssNumber), true),
             (828, 4, BuiltinTypeParsers.ParseString, nameof(NotamAndWeatherFacilityIdentifier), false),
-            (832, 1, BuiltinTypeParsers.ParseBool, nameof(NotamDAvailableAtAirport), false)
+            (832, 1, BuiltinTypeParsers.ParseBool, nameof(NotamDAvailableAtAirport), true)
         };
-        public bool Validate() => true;
+        public bool Validate()
+        {
+            if (TieInFssOnFacility is null)
+            {
+                TieInFssOnFacility = false;
+            }
+            if (TieInFssOnFacility == true)
+            {
+                if ((TieInFssName is null) || (TieInFssIdentifier is null))
+                {
+                    return false;
+                }
+            }
+            if ((MagneticVariation is null) && !(MagneticVariationEpochYear is null))
+            {
+                // Should return false, but this is stupid.
+                // return false;
+            }
+            if (NotamDAvailableAtAirport is null)
+            {
+                NotamDAvailableAtAirport = true;
+            }
+            if (DirectionFromCBD is null)
+            {
+                if (!(DistanceFromCBDInNm is null || DistanceFromCBDInNm == 0))
+                {
+                    // Well, some airports don't specify the direction from CBD even when distance is specified
+                    // return false;
+                }
+            }
+            return true;
+        }
 
         private static bool LandingFacilityParser(string val, out object landingFacilityType)
         {

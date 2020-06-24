@@ -26,7 +26,7 @@ namespace FAADataParser.Utils
             catch (NumberParseException)
             {
                 phone = null;
-                return false;
+                return true;
             }
             return true;
         }
