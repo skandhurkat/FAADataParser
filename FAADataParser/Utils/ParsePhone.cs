@@ -18,6 +18,12 @@ namespace FAADataParser.Utils
             {
                 input = "1-800-" + match.Groups["Group1"] + "-" + match.Groups["Group2"];
             }
+            input = Regex.Replace(input, @"[^0-9a-zA-Z]", "");
+            if (input.Length == 0)
+            {
+                phone = null;
+                return true;
+            }
             try
             {
                 PhoneNumber phoneNumber = phoneNumberUtil.Parse(input, "US");
