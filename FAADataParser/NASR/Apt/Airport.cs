@@ -8,6 +8,7 @@ namespace FAADataParser.NASR.Apt
 {
     public class Airport
     {
+        public string FAAComputerIdentifier { get; set; }
         public LandingFacilityType LandingFacilityType { get; set; }
         public string LocationIdentifier { get; set; }
         public DateTime InformationEffectiveDate { get; set; }

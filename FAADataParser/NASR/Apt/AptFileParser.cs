@@ -31,6 +31,7 @@ namespace FAADataParser.NASR.Apt
                                 siteNumber = apt.SiteNumber;
                                 airport = new Airport
                                 {
+                                    FAAComputerIdentifier = apt.SiteNumber,
                                     LandingFacilityType = apt.LandingFacilityType,
                                     LocationIdentifier = apt.LocationIdentifier,
                                     InformationEffectiveDate = apt.InformationEffectiveDate,
