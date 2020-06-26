@@ -4,7 +4,7 @@ using System.IO;
 
 namespace FAADataParser.NASR.Apt
 {
-    class AptFileParser
+    public static class AptFileParser
     {
         public static List<Airport> ParseFile(FileStream file)
         {
