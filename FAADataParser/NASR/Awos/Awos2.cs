@@ -4,7 +4,7 @@ using FAADataParser.Utils;
 
 namespace FAADataParser.NASR.Awos
 {
-    class Awos2 : INASRDataParser
+    internal class Awos2 : INASRDataParser
     {
         public string SensorIdent { get; private set; }
         public WxSensorType SensorType { get; private set; }

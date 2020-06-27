@@ -12,7 +12,7 @@ namespace UnitTests.FAADataParser.Utils
         [TestMethod]
         public void GoodLatitudeParsingTests()
         {
-            List<(string, decimal)> dataList = new List<(string, decimal)>
+            var dataList = new List<(string, decimal)>
             {
                 (@"34-36-21.290N ", 124581.290m),
                 (@"47-38-18.000N ", 171498.000m),
@@ -30,7 +30,7 @@ namespace UnitTests.FAADataParser.Utils
         [TestMethod]
         public void GoodLongitudeParsingTests()
         {
-            List<(string, decimal)> dataList = new List<(string, decimal)>
+            var dataList = new List<(string, decimal)>
             {
                 (@"134-36-21.290E", 484581.290m),
                 (@"047-38-18.000E", 171498.000m),

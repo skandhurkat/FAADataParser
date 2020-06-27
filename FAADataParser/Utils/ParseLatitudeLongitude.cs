@@ -2,7 +2,7 @@
 
 namespace FAADataParser.Utils
 {
-    static class ParseLatitudeLongitude
+    internal static class ParseLatitudeLongitude
     {
         public static bool ParseLatLong(string input, out object output)
         {

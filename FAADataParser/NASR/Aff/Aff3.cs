@@ -6,7 +6,8 @@ namespace FAADataParser.NASR.Aff
 {
     public enum AltitudeSector { Low, High, LowHigh, UltraHigh };
     public enum FrequencySpecialUsage { None, ApproachControl, Discrete, DoNotPublish, Oceanic };
-    class Aff3 : INASRDataParser
+
+    internal class Aff3 : INASRDataParser
     {
         public string ArtccIdent { get; private set; }
         public string SiteLocation { get; private set; }
@@ -23,10 +24,7 @@ namespace FAADataParser.NASR.Aff
         public decimal? AirportLatitude { get; private set; } = null;
         public decimal? AirportLongitude { get; private set; } = null;
 
-        public static bool TryParse(string recordString, out Aff3 aff3)
-        {
-            return NASRDataParserGeneric<Aff3>.TryParse(recordString, 254, "AFF3", fieldList, out aff3);
-        }
+        public static bool TryParse(string recordString, out Aff3 aff3) => NASRDataParserGeneric<Aff3>.TryParse(recordString, 254, "AFF3", fieldList, out aff3);
 
         private static readonly List<(int fieldStart, int fieldLength, ParserDelegate parserDelegate, string propertyName, bool nullable)> fieldList = new List<(int fieldStart, int fieldLength, ParserDelegate parserDelegate, string propertyName, bool nullable)>
         {

@@ -2,7 +2,7 @@
 
 namespace FAADataParser.Utils
 {
-    static class BuiltinTypeParsers
+    internal static class BuiltinTypeParsers
     {
         public static bool ParseString(string input, out object output)
         {

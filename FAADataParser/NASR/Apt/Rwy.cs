@@ -27,7 +27,8 @@ namespace FAADataParser.NASR.Apt
         Poor,
         Failed
     }
-    class Rwy : INASRDataParser
+
+    internal class Rwy : INASRDataParser
     {
         public string SiteNumber { get; private set; }
         public string RwyIdentification { get; private set; }
@@ -55,10 +56,7 @@ namespace FAADataParser.NASR.Apt
         public double? ReciprocalEndDisplacedThresholdElevation { get; private set; }
         public double? ReciprocalEndTouchdownZoneElevation { get; private set; }
 
-        public static bool TryParse(string recordString, out Rwy rwy)
-        {
-            return NASRDataParserGeneric<Rwy>.TryParse(recordString, 1529, "RWY", fieldList, out rwy);
-        }
+        public static bool TryParse(string recordString, out Rwy rwy) => NASRDataParserGeneric<Rwy>.TryParse(recordString, 1529, "RWY", fieldList, out rwy);
 
         private static readonly List<(int fieldStart, int fieldLength, ParserDelegate parserDelegate, string propertyName, bool nullable)> fieldList = new List<(int fieldStart, int fieldLength, ParserDelegate parserDelegate, string propertyName, bool nullable)>
         {

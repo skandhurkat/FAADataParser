@@ -8,8 +8,8 @@ namespace FAADataParser.NASR.Apt
     {
         public static List<Airport> ParseFile(FileStream file)
         {
-            List<Airport> airports = new List<Airport>();
-            using (StreamReader streamReader = new StreamReader(file, true))
+            var airports = new List<Airport>();
+            using (var streamReader = new StreamReader(file, true))
             {
                 string line;
                 Airport airport = null;

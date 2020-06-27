@@ -9,7 +9,7 @@
         SecondaryRadar
     };
 
-    static class FacilityTypeParser
+    internal static class FacilityTypeParser
     {
         public static bool ParseFacilityType(string value, out object facilityType)
         {

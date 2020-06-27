@@ -26,7 +26,8 @@ namespace FAADataParser.NASR.Awos
         WEF,
         SAWS
     };
-    class Awos1 : INASRDataParser
+
+    internal class Awos1 : INASRDataParser
     {
         public string SensorIdent { get; private set; }
         public WxSensorType SensorType { get; private set; }

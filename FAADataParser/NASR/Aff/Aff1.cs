@@ -5,7 +5,7 @@ using FAADataParser.Utils;
 
 namespace FAADataParser.NASR.Aff
 {
-    class Aff1 : INASRDataParser
+    internal class Aff1 : INASRDataParser
     {
         public string ArtccIdent { get; private set; }
         public string ArtccName { get; private set; }
@@ -19,10 +19,7 @@ namespace FAADataParser.NASR.Aff
         public decimal? Longitude { get; private set; } = null;
         public string IcaoId { get; private set; }
 
-        public static bool TryParse(string recordString, out Aff1 aff1)
-        {
-            return NASRDataParserGeneric<Aff1>.TryParse(recordString, 254, "AFF1", fieldList, out aff1);
-        }
+        public static bool TryParse(string recordString, out Aff1 aff1) => NASRDataParserGeneric<Aff1>.TryParse(recordString, 254, "AFF1", fieldList, out aff1);
 
         private static readonly List<(int fieldStart, int fieldLength, ParserDelegate parserDelegate, string propertyName, bool nullable)> fieldList = new List<(int fieldStart, int fieldLength, ParserDelegate parserDelegate, string propertyName, bool nullable)>
         {

@@ -4,12 +4,14 @@ using System.Reflection;
 
 namespace FAADataParser.NASR
 {
-    delegate bool ParserDelegate(string input, out object parsedValue);
-    interface INASRDataParser
+    internal delegate bool ParserDelegate(string input, out object parsedValue);
+
+    internal interface INASRDataParser
     {
         bool Validate();
     }
-    static class NASRDataParserGeneric<T> where T : INASRDataParser, new()
+
+    internal static class NASRDataParserGeneric<T> where T : INASRDataParser, new()
     {
         public static bool TryParse(
             string input,
@@ -30,7 +32,7 @@ namespace FAADataParser.NASR
             {
                 return false;
             }
-            foreach (var field in fieldList)
+            foreach ((int fieldBegin, int fieldLength, ParserDelegate parserFunc, string propertyName, bool nullable) field in fieldList)
             {
                 PropertyInfo property = t.GetProperty(field.propertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
                 string fieldSubstring = input.Substring(field.fieldBegin, field.fieldLength).Trim();

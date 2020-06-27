@@ -4,7 +4,7 @@ using PhoneNumbers;
 
 namespace FAADataParser.Utils
 {
-    class ParsePhone
+    internal class ParsePhone
     {
         public static bool TryParse(string input, out object phone)
         {

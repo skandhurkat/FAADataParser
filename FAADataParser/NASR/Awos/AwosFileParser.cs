@@ -9,7 +9,7 @@ namespace FAADataParser.NASR.Awos
         public static List<Awos> ParseFile(FileStream file)
         {
             var awosList = new List<Awos>();
-            using (StreamReader streamReader = new StreamReader(file, true))
+            using (var streamReader = new StreamReader(file, true))
             {
                 string line;
                 Awos awos = null;

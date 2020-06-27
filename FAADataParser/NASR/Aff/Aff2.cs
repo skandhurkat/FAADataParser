@@ -4,7 +4,7 @@ using FAADataParser.Utils;
 
 namespace FAADataParser.NASR.Aff
 {
-    class Aff2 : INASRDataParser
+    internal class Aff2 : INASRDataParser
     {
         public string ArtccIdent { get; private set; }
         public string SiteLocation { get; private set; }
@@ -12,10 +12,7 @@ namespace FAADataParser.NASR.Aff
         public int RemarksNumber { get; private set; }
         public string RemarksText { get; private set; }
 
-        public static bool TryParse(string recordString, out Aff2 aff2)
-        {
-            return NASRDataParserGeneric<Aff2>.TryParse(recordString, 254, "AFF2", fieldList, out aff2);
-        }
+        public static bool TryParse(string recordString, out Aff2 aff2) => NASRDataParserGeneric<Aff2>.TryParse(recordString, 254, "AFF2", fieldList, out aff2);
 
         private static readonly List<(int fieldStart, int fieldLength, ParserDelegate parserDelegate, string propertyName, bool nullable)> fieldList = new List<(int fieldStart, int fieldLength, ParserDelegate parserDelegate, string propertyName, bool nullable)>
         {

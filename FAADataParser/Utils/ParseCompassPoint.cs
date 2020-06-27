@@ -19,7 +19,8 @@
         NorthWest,
         NorthNorthWest
     };
-    class ParseCompassPoint
+
+    internal class ParseCompassPoint
     {
         public static bool TryParse(string input, out object compassPoint)
         {

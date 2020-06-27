@@ -9,8 +9,8 @@ namespace FAADataParser.NASR.Aff
     {
         public static List<ArtccFacility> ParseFile(FileStream file)
         {
-            List<ArtccFacility> facilitiesList = new List<ArtccFacility>();
-            using (StreamReader streamReader = new StreamReader(file, true))
+            var facilitiesList = new List<ArtccFacility>();
+            using (var streamReader = new StreamReader(file, true))
             {
                 string line;
                 ArtccFacility facility = null;
@@ -72,7 +72,7 @@ namespace FAADataParser.NASR.Aff
                             {
                                 throw new ApplicationException("Mismatch in AFF3 and AFF1\n" + line);
                             }
-                            ArtccFrequencyInformation frequencyInformation = new ArtccFrequencyInformation
+                            var frequencyInformation = new ArtccFrequencyInformation
                             {
                                 Frequency = aff3.Frequency,
                                 AltitudeSector = aff3.AltitudeSector,

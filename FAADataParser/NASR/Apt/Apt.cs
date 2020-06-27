@@ -28,7 +28,7 @@ namespace FAADataParser.NASR.Apt
     public enum FacilityUse { Public, Private };
     public enum SurveyMethod { Surveyed, Estimated };
 
-    class Apt : INASRDataParser
+    internal class Apt : INASRDataParser
     {
         public string SiteNumber { get; private set; }
         public LandingFacilityType LandingFacilityType { get; private set; }
@@ -83,10 +83,7 @@ namespace FAADataParser.NASR.Apt
         public string TollFreeAlternateFssNumber { get; private set; }
         public string NotamAndWeatherFacilityIdentifier { get; private set; }
         public bool? NotamDAvailableAtAirport { get; private set; }
-        public static bool TryParse(string recordString, out Apt apt)
-        {
-            return NASRDataParserGeneric<Apt>.TryParse(recordString, 1529, "APT", fieldList, out apt);
-        }
+        public static bool TryParse(string recordString, out Apt apt) => NASRDataParserGeneric<Apt>.TryParse(recordString, 1529, "APT", fieldList, out apt);
 
         private static readonly List<(int fieldStart, int fieldLength, ParserDelegate parserDelegate, string propertyName, bool nullable)> fieldList = new List<(int fieldStart, int fieldLength, ParserDelegate parserDelegate, string propertyName, bool nullable)>
         {

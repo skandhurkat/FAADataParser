@@ -4,7 +4,7 @@ using FAADataParser.Utils;
 
 namespace FAADataParser.NASR.Apt
 {
-    class Rmk : INASRDataParser
+    internal class Rmk : INASRDataParser
     {
         public string SiteNumber { get; private set; }
         public string ElementName { get; private set; }
