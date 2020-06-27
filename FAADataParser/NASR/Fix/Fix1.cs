@@ -23,17 +23,17 @@ namespace FAADataParser.NASR.Fix
     };
     internal class Fix1 : INASRDataParser
     {
-        public string ID { get; set; }
-        public string State { get; set; }
-        public string ICAORegionCode { get; set; }
-        public decimal Latitude { get; set; }
-        public decimal Longitude { get; set; }
-        public Type Type { get; set; }
-        public bool Published { get; set; }
-        public Use Use { get; set; }
-        public string NASRIdentifier { get; set; }
-        public string HighARTCC { get; set; }
-        public string LowARTCC { get; set; }
+        public string ID { get; private set; }
+        public string State { get; private set; }
+        public string ICAORegionCode { get; private set; }
+        public decimal Latitude { get; private set; }
+        public decimal Longitude { get; private set; }
+        public Type Type { get; private set; }
+        public bool Published { get; private set; }
+        public Use Use { get; private set; }
+        public string NASRIdentifier { get; private set; }
+        public string HighARTCC { get; private set; }
+        public string LowARTCC { get; private set; }
         public static bool TryParse(string recordString, out Fix1 fix1) => NASRDataParserGeneric<Fix1>.TryParse(recordString, 466, "FIX1", fieldList, out fix1);
         private static readonly List<(int fieldStart, int fieldLength, ParserDelegate parserDelegate, string propertyName, bool nullable)> fieldList = new List<(int fieldStart, int fieldLength, ParserDelegate parserDelegate, string propertyName, bool nullable)>
         {
