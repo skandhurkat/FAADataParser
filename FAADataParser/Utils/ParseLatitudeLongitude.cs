@@ -64,8 +64,8 @@ namespace FAADataParser.Utils
             }
             return false;
         }
-        private static readonly Regex latitudeDegMinSecRegex = new Regex(@"\b(?<Degrees>\d{2})-(?<Minutes>\d{2})-(?<Seconds>\d{2}\.\d{3,4})(?<Hemisphere>[NS])\b");
-        private static readonly Regex longitudeDegMinSecRegex = new Regex(@"\b(?<Degrees>\d{3})-(?<Minutes>\d{2})-(?<Seconds>\d{2}\.\d{3,4})(?<Hemisphere>[EW])\b");
+        private static readonly Regex latitudeDegMinSecRegex = new Regex(@"\b(?<Degrees>\d{2})-(?<Minutes>\d{2})-(?<Seconds>\d{2}\.\d{1,4})(?<Hemisphere>[NS])\b");
+        private static readonly Regex longitudeDegMinSecRegex = new Regex(@"\b(?<Degrees>\d{3})-(?<Minutes>\d{2})-(?<Seconds>\d{2}\.\d{1,4})(?<Hemisphere>[EW])\b");
         private static readonly Regex allSecRegex = new Regex(@"\b(?<Seconds>\d{6}\.\d{3,4})(?<Hemisphere>[NSEW])\b");
     }
 }
